@@ -1,5 +1,15 @@
 ---
 
+- hosts: docker-debian-jessie:debian-jessie
+  tasks:
+    - name: APT_REPOSITORY | Add backports
+      apt_repository:
+        repo: 'deb http://deb.debian.org/debian jessie-backports main'
+    - name: APT | Install Java 8
+      apt:
+        pkg: openjdk-8-jre-headless
+        default_release: jessie-backports
+
 - hosts: all
   vars:
     cassandra_config:

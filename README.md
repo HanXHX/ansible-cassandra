@@ -8,7 +8,7 @@ Install and configure [Cassandra](http://cassandra.apache.org/) for Debian based
 Requirements
 ------------
 
-None.
+On Debian Jessie, you must install [backports](https://backports.debian.org/) (needed by Java 8).
 
 Role Variables
 --------------
