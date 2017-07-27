@@ -1,5 +1,14 @@
 ---
 
+- name: APT | Install needed packages
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg: "{{ item }}"
+  with_items:
+    - ca-certificates
+    - gpg
+
 - name: APT_KEY | Add cassandra's key
   apt_key:
     url: "https://www.apache.org/dist/cassandra/KEYS"
