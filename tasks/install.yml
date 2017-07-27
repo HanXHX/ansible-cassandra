@@ -7,7 +7,7 @@
     pkg: "{{ item }}"
   with_items:
     - ca-certificates
-    - gpg
+    - gnupg
 
 - name: APT_KEY | Add cassandra's key
   apt_key:
