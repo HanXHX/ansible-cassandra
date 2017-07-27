@@ -1,0 +1,8 @@
+---
+
+# APT
+cassandra_apt_serie: "311x" # See: http://dl.bintray.com/apache/cassandra/dists/
+cassandra_apt_src: false
+
+# Config
+cassandra_config: {}

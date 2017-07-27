@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  vars:
+    cassandra_config:
+      auto_snapshot: false
+  roles:
+    - ../../
+  post_tasks:
+    - name: -- TEST -- COMMAND | Simple CQL request
+      command: cqlsh -e "SELECT cluster_name, listen_address FROM system.local;"
+      changed_when: false

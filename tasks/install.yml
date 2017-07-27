@@ -1,0 +1,24 @@
+---
+
+- name: APT_KEY | Add cassandra's key
+  apt_key:
+    url: "https://www.apache.org/dist/cassandra/KEYS"
+
+- name: APT_REPOSITORY | Add cassandra
+  apt_repository:
+    repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_apt_serie }} main"
+    filename: "cassandra_{{ cassandra_apt_serie }}"
+
+- name: APT_REPOSITORY | Add cassandra
+  apt_repository:
+    repo: "deb http://www.apache.org/dist/cassandra/debian {{ cassandra_apt_serie }} main"
+    filename: "cassandra_{{ cassandra_apt_serie }}"
+  when: cassandra_apt_src
+
+- name: APT | Install cassandra
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - cassandra
+    - cassandra-tools

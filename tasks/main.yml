@@ -1,0 +1,20 @@
+---
+
+- name: SET_FACT | Get ansible port
+  set_fact:
+    cassandra_config: "{{ cassandra_default_config | combine(cassandra_config, recursive=True) }}"
+    cassandra_port: "{{ cassandra_default_config.native_transport_port }}"
+
+- name: INCLUDE | Install
+  include: install.yml
+
+- name: TEMPLATE | Deploy configuration
+  template:
+    src: etc/cassandra/cassandra.yaml.j2
+    dest: /etc/cassandra/cassandra.yaml
+  notify: restart cassandra
+
+- name: SERVICE | Ensure cassandra started
+  service:
+    name: cassandra
+    state: started

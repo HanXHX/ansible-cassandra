@@ -1,0 +1,11 @@
+---
+
+- name: restart cassandra
+  service:
+    name: cassandra
+    state: restarted
+  notify: wait daemon
+
+- name: wait daemon
+  wait_for:
+    port: "{{ cassandra_port }}"
